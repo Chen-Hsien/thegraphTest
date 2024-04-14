@@ -1,0 +1,86 @@
+specVersion: 1.0.0
+indexerHints:
+  prune: auto
+schema:
+  file: ./schema.graphql
+dataSources:
+  - kind: ethereum
+    name: ICHICHAIN
+    network: chapel
+    source:
+      address: "0xf61e5d051E5318d5cba19bb79318aa16417345Fd"
+      abi: ICHICHAIN
+      startBlock: 39469490
+    mapping:
+      kind: ethereum/events
+      apiVersion: 0.0.7
+      language: wasm/assemblyscript
+      entities:
+        - AddCurrencyToken
+        - Approval
+        - ApprovalForAll
+        - ConsecutiveTransfer
+        - LastPrizeDraw
+        - NewSeries
+        - NewSubPrize
+        - NewTicketStatus
+        - OwnershipTransferred
+        - RequestExchangePrize
+        - RequestFulfilled
+        - RevealToken
+        - TokenMintByAdmin
+        - TokenMintByCurrency
+        - TokenMintByMatic
+        - Transfer
+        - UpdatePrize
+        - UpdateSeriesInformation
+        - UpdateSeriesLastPrizeOwner
+        - UpdateSeriesRemainingTicketNumbers
+        - UpdateTicketStatus
+      abis:
+        - name: ICHICHAIN
+          file: ./abis/ICHICHAIN.json
+      eventHandlers:
+        - event: AddCurrencyToken(address,address)
+          handler: handleAddCurrencyToken
+        - event: Approval(indexed address,indexed address,indexed uint256)
+          handler: handleApproval
+        - event: ApprovalForAll(indexed address,indexed address,bool)
+          handler: handleApprovalForAll
+        - event: ConsecutiveTransfer(indexed uint256,uint256,indexed address,indexed address)
+          handler: handleConsecutiveTransfer
+        - event: LastPrizeDraw(uint256,uint256)
+          handler: handleLastPrizeDraw
+        - event: NewSeries(indexed uint256,string,uint256,uint256,uint256,bool,uint256,uint256,string,string,string,string,address)
+          handler: handleNewSeries
+        - event: NewSubPrize(indexed uint256,uint256,string,string,uint256)
+          handler: handleNewSubPrize
+        - event: NewTicketStatus(uint256,uint256,uint256,bool,bool,address)
+          handler: handleNewTicketStatus
+        - event: OwnershipTransferred(indexed address,indexed address)
+          handler: handleOwnershipTransferred
+        - event: RequestExchangePrize(uint256[])
+          handler: handleRequestExchangePrize
+        - event: RequestFulfilled(uint256,uint256[])
+          handler: handleRequestFulfilled
+        - event: RevealToken(uint256,uint256,uint256[])
+          handler: handleRevealToken
+        - event: TokenMintByAdmin(address,uint256,uint256)
+          handler: handleTokenMintByAdmin
+        - event: TokenMintByCurrency(address,uint256,uint256,address,uint256)
+          handler: handleTokenMintByCurrency
+        - event: TokenMintByMatic(address,uint256,uint256,uint256)
+          handler: handleTokenMintByMatic
+        - event: Transfer(indexed address,indexed address,indexed uint256)
+          handler: handleTransfer
+        - event: UpdatePrize(indexed uint256,uint256,uint256)
+          handler: handleUpdatePrize
+        - event: UpdateSeriesInformation(indexed uint256,bool,uint256,string,string,string,string)
+          handler: handleUpdateSeriesInformation
+        - event: UpdateSeriesLastPrizeOwner(indexed uint256,address)
+          handler: handleUpdateSeriesLastPrizeOwner
+        - event: UpdateSeriesRemainingTicketNumbers(indexed uint256,uint256)
+          handler: handleUpdateSeriesRemainingTicketNumbers
+        - event: UpdateTicketStatus(uint256,uint256,uint256,bool,bool)
+          handler: handleUpdateTicketStatus
+      file: ./src/ichichain.ts
