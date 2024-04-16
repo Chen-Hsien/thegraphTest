@@ -85,7 +85,7 @@ type NewSeries @entity {
 type IchibanSeries @entity(immutable: true) {
   id: Bytes!
   hash: String!
-  belongSeries: NewSeries!
+  belongSeries: NewSeries
   onChainSeriesID: BigInt
   content: String
   title: String

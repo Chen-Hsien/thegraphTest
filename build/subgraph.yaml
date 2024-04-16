@@ -2,7 +2,7 @@ specVersion: 1.0.0
 indexerHints:
   prune: auto
 schema:
-  file: ./schema.graphql
+  file: schema.graphql
 dataSources:
   - kind: ethereum
     name: ICHICHAIN
@@ -39,7 +39,7 @@ dataSources:
         - UpdateTicketStatus
       abis:
         - name: ICHICHAIN
-          file: ./abis/ICHICHAIN.json
+          file: ICHICHAIN/abis/ICHICHAIN.json
       eventHandlers:
         - event: AddCurrencyToken(address,address)
           handler: handleAddCurrencyToken
@@ -51,7 +51,8 @@ dataSources:
           handler: handleConsecutiveTransfer
         - event: LastPrizeDraw(uint256,uint256)
           handler: handleLastPrizeDraw
-        - event: NewSeries(indexed uint256,string,uint256,uint256,uint256,bool,uint256,uint256,string,string,string,string,address)
+        - event: NewSeries(indexed
+            uint256,string,uint256,uint256,uint256,bool,uint256,uint256,string,string,string,string,address)
           handler: handleNewSeries
         - event: NewSubPrize(indexed uint256,uint256,string,string,uint256)
           handler: handleNewSubPrize
@@ -83,7 +84,7 @@ dataSources:
           handler: handleUpdateSeriesRemainingTicketNumbers
         - event: UpdateTicketStatus(uint256,uint256,uint256,bool,bool)
           handler: handleUpdateTicketStatus
-      file: ./src/ichichain.ts
+      file: ICHICHAIN/ICHICHAIN.wasm
 templates:
   - kind: file/ipfs
     name: IpfsContent
@@ -97,6 +98,6 @@ templates:
         - IchibanKujiSubPrize
       abis:
         - name: Contract
-          file: ./abis/ICHICHAIN.json
+          file: IpfsContent/abis/ICHICHAIN.json
       handler: handleIchibanSeries
-      file: ./src/ichichain.ts
+      file: ICHICHAIN/ICHICHAIN.wasm
